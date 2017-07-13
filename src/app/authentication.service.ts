@@ -25,20 +25,19 @@ export class AuthenticationService {
     const authenticatedUser: User = users.find(user => user.username === currentUser.username);
 
     if(authenticatedUser && authenticatedUser.password === currentUser.password) {
-      localStorage.setItem('username', authenticatedUser.username);
-      localStorage.setItem('password', authenticatedUser.password);
+      localStorage.setItem('user', authenticatedUser.username);
       this.router.navigate(['']);
       return true;
     } else return false;
   }
 
   checkCredentials(): void {
-    if (!localStorage.getItem('username') || !localStorage.getItem('password')) {
+    if (!localStorage.getItem('user')) {
       this.router.navigate(['login']);
     }
   }
 
   getLoggedInUsername(): string {
-    return localStorage.getItem('username');
+    return localStorage.getItem('user');
   }
 }
